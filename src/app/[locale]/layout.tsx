@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Inter, Space_Grotesk, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Plus_Jakarta_Sans, Syne, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { isLocale, locales, localeMeta, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { Header } from "@/components/Header";
@@ -8,15 +8,15 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { MouseParallax } from "@/components/MouseParallax";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-plus-jakarta-sans",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -77,7 +77,7 @@ export default async function LocaleLayout(props: {
     <html
       lang={meta.htmlLang}
       dir={meta.dir}
-      className={`${inter.variable} ${spaceGrotesk.variable} ${plexArabic.variable}`}
+      className={`${plusJakartaSans.variable} ${syne.variable} ${plexArabic.variable}`}
       suppressHydrationWarning
     >
       <body>

@@ -37,7 +37,7 @@ export default async function HomePage(props: {
               <h1 className="text-display animate-fade-up delay-100 mt-6 text-5xl font-medium md:text-7xl lg:text-[80px] lg:leading-[0.95]">
                 {t.hero.title}
                 <br />
-                <span className="text-[var(--color-accent)]">{t.hero.titleAccent}</span>
+                <span className="text-gradient-gold">{t.hero.titleAccent}</span>
               </h1>
 
               <p className="animate-fade-up delay-200 mt-6 max-w-xl text-base leading-relaxed text-[var(--color-fg-muted)] md:text-lg">
@@ -109,21 +109,47 @@ export default async function HomePage(props: {
 
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 gap-4">
-              {t.values.items.map((v, idx) => (
-                <Card
-                  interactive
-                  key={v.title}
-                  className={idx % 3 === 0 ? "row-span-2" : ""}
-                >
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
-                    <Icon name={v.icon as IconName} size={20} />
+              {t.values.items.map((v, idx) => {
+                const valueImages = [
+                  "value_quality.png",
+                  "value_professionalism.png",
+                  "value_innovation.png",
+                  "value_commitment.png",
+                  "value_customer_focus.png"
+                ];
+                const bgImage = `/images/${valueImages[idx] || "digital_building_wireframe.png"}`;
+
+                return (
+                  <Card
+                    interactive
+                    key={v.title}
+                    className={`group/card ${idx % 3 === 0 ? "row-span-2" : ""}`}
+                  >
+                    {/* Digital building blueprint background texture */}
+                    <div 
+                      className="absolute inset-0 opacity-[0.03] group-hover/card:opacity-[0.18] scale-100 group-hover/card:scale-108 transition-all duration-700 pointer-events-none z-0"
+                      style={{
+                        backgroundImage: `url(${bgImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+
+                  <div className="relative z-10 flex flex-col h-full justify-between">
+                    <div>
+                      <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
+                        <Icon name={v.icon as IconName} size={20} />
+                      </div>
+                      <h3 className="mt-5 text-lg font-semibold">{v.title}</h3>
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
+                      {v.description}
+                    </p>
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold">{v.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
-                    {v.description}
-                  </p>
                 </Card>
-              ))}
+              );
+            })}
             </div>
           </div>
         </div>
@@ -162,18 +188,19 @@ export default async function HomePage(props: {
               <a
                 href={`/${locale}/services`}
                 key={s.id}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:border-[var(--color-accent-green)]/60 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent-green)]/5"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:border-[var(--color-accent)]/45 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent)]/5"
               >
-                {/* Dynamic Background Image Texture on Hover */}
+                {/* Dynamic Background Image Texture - Visible by default, scales and clears on hover */}
                 <div 
-                  className="absolute inset-0 opacity-0 scale-100 group-hover:opacity-[0.08] group-hover:scale-108 transition-all duration-1000 pointer-events-none z-0"
+                  className="absolute inset-0 opacity-15 scale-100 group-hover:opacity-65 group-hover:scale-110 transition-all duration-500 ease-out pointer-events-none z-0"
                   style={{
                     backgroundImage: `url(${getServiceBgImage(s.id)})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-[var(--color-surface)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+                {/* Legibility protecting gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/60 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none z-0" />
 
                 <div className="relative grid h-11 w-11 place-items-center rounded-xl bg-[var(--color-bg)] text-[var(--color-accent)] transition-all duration-300 group-hover:bg-[var(--color-accent-soft)] group-hover:-translate-y-0.5 z-10">
                   <Icon name={s.icon as IconName} size={18} />
@@ -240,58 +267,117 @@ export default async function HomePage(props: {
       </Section>
 
       {/* PARTNERS */}
-      <Section size="md" className="border-t border-[var(--color-border)]">
+      <Section size="md" className="border-t border-[var(--color-border)] overflow-hidden">
         <SectionHeader
           eyebrow={t.partners.eyebrow}
           title={t.partners.title}
           subtitle={t.partners.subtitle}
         />
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {dict.brands.items.map((b) => {
-            const getBrandBgImage = (id: string) => {
-              switch (id) {
-                case "ccc":
-                  return "/images/polished_concrete.png";
-                case "rapidset":
-                  return "/images/concrete_construction.png";
-                case "flake":
-                  return "/images/terrazzo_floor.png";
-                case "bricform":
-                  return "/images/stamped_concrete.png";
-                case "lythic":
-                  return "/images/polished_concrete.png";
-                case "day1":
-                  return "/images/exposed_aggregate.png";
-                default:
-                  return "/images/polished_concrete.png";
-              }
-            };
+        
+        <div className="mt-12 relative w-full overflow-hidden py-6 mask-image-horizontal" dir="ltr">
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+            {/* Track 1 */}
+            <div className="flex gap-6 pr-6 shrink-0">
+              {dict.brands.items.map((b) => {
+                const getBrandBgImage = (id: string) => {
+                  switch (id) {
+                    case "ccc":
+                      return "/images/polished_concrete.png";
+                    case "rapidset":
+                      return "/images/concrete_construction.png";
+                    case "flake":
+                      return "/images/terrazzo_floor.png";
+                    case "bricform":
+                      return "/images/stamped_concrete.png";
+                    case "lythic":
+                      return "/images/polished_concrete.png";
+                    case "day1":
+                      return "/images/exposed_aggregate.png";
+                    default:
+                      return "/images/polished_concrete.png";
+                  }
+                };
 
-            return (
-              <div
-                key={b.id}
-                className="group relative overflow-hidden flex flex-col items-center justify-center gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] py-8 px-4 transition-all duration-300 hover:border-[var(--color-accent-green)]/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--color-accent-green)]/5"
-              >
-                {/* Background texture on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 scale-100 group-hover:opacity-[0.07] group-hover:scale-108 transition-all duration-1000 pointer-events-none z-0"
-                  style={{
-                    backgroundImage: `url(${getBrandBgImage(b.id)})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-[var(--color-surface)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+                return (
+                  <div
+                    key={b.id}
+                    className="group relative overflow-hidden flex flex-col items-center justify-center gap-2 border border-[var(--color-border)] bg-[var(--color-surface)] py-12 px-6 w-72 h-52 transition-all duration-300 hover:border-[var(--color-accent)]/45 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent)]/5"
+                    style={{ borderRadius: '0 50% 0 50%' }}
+                  >
+                    {/* Background texture - visible by default, scales and clears on hover */}
+                    <div 
+                      className="absolute inset-0 opacity-15 scale-100 group-hover:opacity-65 group-hover:scale-110 transition-all duration-500 ease-out pointer-events-none z-0"
+                      style={{
+                        backgroundImage: `url(${getBrandBgImage(b.id)})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    {/* Legibility protecting gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/60 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none z-0" />
 
-                <div className="text-display text-xl font-semibold text-[var(--color-fg)] transition-colors duration-300 group-hover:text-[var(--color-accent)] z-10 relative">
-                  {b.name}
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-fg-subtle)] text-center z-10 relative">
-                  {b.tagline}
-                </div>
-              </div>
-            );
-          })}
+                    <div className="text-display text-2xl font-bold text-[var(--color-fg)] transition-colors duration-300 group-hover:text-[var(--color-accent)] z-10 relative">
+                      {b.name}
+                    </div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--color-fg-subtle)] text-center z-10 relative max-w-[85%] mx-auto whitespace-normal leading-normal">
+                      {b.tagline}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* Track 2 (Seamless loop duplicate) */}
+            <div className="flex gap-6 pr-6 shrink-0" aria-hidden="true">
+              {dict.brands.items.map((b) => {
+                const getBrandBgImage = (id: string) => {
+                  switch (id) {
+                    case "ccc":
+                      return "/images/polished_concrete.png";
+                    case "rapidset":
+                      return "/images/concrete_construction.png";
+                    case "flake":
+                      return "/images/terrazzo_floor.png";
+                    case "bricform":
+                      return "/images/stamped_concrete.png";
+                    case "lythic":
+                      return "/images/polished_concrete.png";
+                    case "day1":
+                      return "/images/exposed_aggregate.png";
+                    default:
+                      return "/images/polished_concrete.png";
+                  }
+                };
+
+                return (
+                  <div
+                    key={`${b.id}-dup`}
+                    className="group relative overflow-hidden flex flex-col items-center justify-center gap-2 border border-[var(--color-border)] bg-[var(--color-surface)] py-12 px-6 w-72 h-52 transition-all duration-300 hover:border-[var(--color-accent)]/45 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent)]/5"
+                    style={{ borderRadius: '0 50% 0 50%' }}
+                  >
+                    {/* Background texture - visible by default, scales and clears on hover */}
+                    <div 
+                      className="absolute inset-0 opacity-15 scale-100 group-hover:opacity-65 group-hover:scale-110 transition-all duration-500 ease-out pointer-events-none z-0"
+                      style={{
+                        backgroundImage: `url(${getBrandBgImage(b.id)})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    {/* Legibility protecting gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/60 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none z-0" />
+
+                    <div className="text-display text-2xl font-bold text-[var(--color-fg)] transition-colors duration-300 group-hover:text-[var(--color-accent)] z-10 relative">
+                      {b.name}
+                    </div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--color-fg-subtle)] text-center z-10 relative max-w-[85%] mx-auto whitespace-normal leading-normal">
+                      {b.tagline}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </Section>
 

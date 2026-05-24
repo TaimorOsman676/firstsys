@@ -45,18 +45,18 @@ export default async function ServicesPage(props: {
           {t.items.map((s, idx) => (
             <div
               key={s.id}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent-green)]/60 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent-green)]/5"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/45 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent)]/5"
             >
-              {/* Animated Concrete Background Texture */}
+              {/* Animated Concrete Background Texture - 30% normal / 65% hover */}
               <div 
-                className="absolute inset-0 opacity-0 scale-100 group-hover:opacity-10 group-hover:scale-108 transition-all duration-1000 pointer-events-none z-0"
+                className="absolute inset-0 opacity-30 scale-100 group-hover:opacity-65 group-hover:scale-110 transition-all duration-500 ease-out pointer-events-none z-0"
                 style={{
                   backgroundImage: `url(${getServiceBgImage(s.id)})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-[var(--color-surface)]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/60 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none z-0" />
               
               <div className="absolute -end-10 -top-10 w-32 h-32 rounded-full bg-[var(--color-accent)]/0 blur-2xl transition group-hover:bg-[var(--color-accent)]/10 pointer-events-none z-0" />
               
@@ -92,20 +92,45 @@ export default async function ServicesPage(props: {
           className="mx-auto"
         />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.process.steps.map((step) => (
-            <div
-              key={step.step}
-              className="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
-            >
-              <div className="text-display text-5xl font-medium text-[var(--color-accent)]/30">
-                {step.step}
+          {t.process.steps.map((step, idx) => {
+            const processImages = [
+              "process_consultation.png",
+              "process_specification.png",
+              "process_supply.png",
+              "process_support.png"
+            ];
+            const bgImage = `/images/${processImages[idx] || "digital_building_wireframe.png"}`;
+
+            return (
+              <div
+                key={step.step}
+                className="group/process relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/45 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-accent)]/5"
+              >
+                {/* Digital building blueprint background texture */}
+                <div 
+                  className="absolute inset-0 opacity-[0.03] group-hover/process:opacity-[0.18] scale-100 group-hover/process:scale-108 transition-all duration-700 pointer-events-none z-0"
+                  style={{
+                    backgroundImage: `url(${bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-0 group-hover/process:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <div className="text-display text-5xl font-medium text-[var(--color-accent)]/30 transition-colors duration-300 group-hover/process:text-[var(--color-accent)]/60">
+                      {step.step}
+                    </div>
+                    <h3 className="mt-4 text-lg font-semibold transition-colors duration-300 group-hover/process:text-[var(--color-accent)]">{step.title}</h3>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
-                {step.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Section>
 

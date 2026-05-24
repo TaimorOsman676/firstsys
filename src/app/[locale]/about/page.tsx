@@ -24,24 +24,47 @@ export default async function AboutPage(props: {
       {/* STATS BAND */}
       <Section size="sm" className="-mt-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {t.stats.map((s, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
-            >
-              <div className="flex items-baseline gap-2">
-                <div className="text-display text-3xl font-medium md:text-4xl">
-                  {s.value}
+          {t.stats.map((s, i) => {
+            const statImages = [
+              "stat_years.png",
+              "stat_systems.png",
+              "stat_projects.png",
+              "stat_exclusive.png"
+            ];
+            const bgImage = `/images/${statImages[i] || "digital_building_wireframe.png"}`;
+
+            return (
+              <div
+                key={i}
+                className="group/stat relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
+              >
+                {/* Digital building blueprint background texture */}
+                <div 
+                  className="absolute inset-0 opacity-[0.03] group-hover/stat:opacity-[0.12] scale-100 group-hover/stat:scale-105 transition-all duration-700 pointer-events-none z-0"
+                  style={{
+                    backgroundImage: `url(${bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+
+                <div className="relative z-10">
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-display text-3xl font-medium md:text-4xl">
+                      {s.value}
+                    </div>
+                    {s.unit && (
+                      <span className="text-xs font-medium uppercase tracking-wider text-[var(--color-fg-subtle)]">
+                        {s.unit}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 text-sm text-[var(--color-fg-muted)]">{s.label}</div>
                 </div>
-                {s.unit && (
-                  <span className="text-xs font-medium uppercase tracking-wider text-[var(--color-fg-subtle)]">
-                    {s.unit}
-                  </span>
-                )}
               </div>
-              <div className="mt-2 text-sm text-[var(--color-fg-muted)]">{s.label}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Section>
 
@@ -80,17 +103,41 @@ export default async function AboutPage(props: {
           className="mx-auto"
         />
         <div className="mx-auto mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 max-w-6xl">
-          {t.values.items.map((v) => (
-            <Card key={v.title} interactive className="text-center">
-              <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
-                <Icon name={v.icon as IconName} size={22} />
+          {t.values.items.map((v, idx) => {
+            const valueImages = [
+              "value_quality.png",
+              "value_professionalism.png",
+              "value_innovation.png",
+              "value_commitment.png",
+              "value_customer_focus.png"
+            ];
+            const bgImage = `/images/${valueImages[idx] || "digital_building_wireframe.png"}`;
+
+            return (
+              <Card key={v.title} interactive className="text-center group/card">
+                {/* Digital building blueprint background texture */}
+                <div 
+                  className="absolute inset-0 opacity-[0.03] group-hover/card:opacity-[0.18] scale-100 group-hover/card:scale-108 transition-all duration-700 pointer-events-none z-0"
+                  style={{
+                    backgroundImage: `url(${bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
+                  <Icon name={v.icon as IconName} size={22} />
+                </div>
+                <h3 className="mt-5 text-base font-semibold">{v.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-[var(--color-fg-muted)]">
+                  {v.description}
+                </p>
               </div>
-              <h3 className="mt-5 text-base font-semibold">{v.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-[var(--color-fg-muted)]">
-                {v.description}
-              </p>
             </Card>
-          ))}
+          );
+        })}
         </div>
       </Section>
 

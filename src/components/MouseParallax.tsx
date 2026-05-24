@@ -22,5 +22,22 @@ export function MouseParallax() {
     };
   }, []);
 
-  return null;
+  return (
+    <div 
+      className="fixed inset-0 pointer-events-none z-[-20] overflow-hidden opacity-30"
+    >
+      <div 
+        className="absolute -inset-[10%] bg-cover bg-center mix-blend-screen"
+        style={{
+          backgroundImage: `url(/images/neon_fluid_wave.png)`,
+          transform: `translate3d(
+            calc((var(--mouse-x, 0.5) - 0.5) * -45px),
+            calc((var(--mouse-y, 0.5) - 0.5) * -45px),
+            0
+          )`,
+          transition: 'transform 0.7s cubic-bezier(0.15, 0.85, 0.35, 1)'
+        }}
+      />
+    </div>
+  );
 }
