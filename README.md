@@ -81,11 +81,11 @@ All copy lives in `src/i18n/dictionaries/en.ts` and `src/i18n/dictionaries/ar.ts
 
 | Token | Value |
 | --- | --- |
-| `--color-bg` | `#07090d` |
-| `--color-surface` | `#0c1015` |
+| `--color-bg` | `#05070c` |
+| `--color-surface` | `#0a0d14` |
 | `--color-fg` | `#e6ebf2` |
-| `--color-accent` | `#d6a86b` (warm gold) |
-| `--color-accent-2` | `#2c8db5` (deep cyan) |
+| `--color-accent` | `#00bd3a` (vibrant green) |
+| `--color-accent-2` | `#8e9aa8` (cool silver-gray) |
 
 Update them in `src/app/globals.css` to rebrand globally.
 
