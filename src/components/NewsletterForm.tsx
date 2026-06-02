@@ -38,7 +38,7 @@ export function NewsletterForm({ locale: _locale, placeholder, cta, successText 
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
-          className="h-12 w-full rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] pe-4 ps-11 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-subtle)] focus:border-[var(--color-accent)]/50 focus:outline-none transition"
+          className="h-12 w-full rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] pe-4 ps-11 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-muted)] focus:border-[var(--color-accent)]/50 focus:outline-none transition"
         />
       </div>
       <button

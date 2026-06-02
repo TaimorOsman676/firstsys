@@ -19,16 +19,8 @@ export function Footer({ locale, dict }: Props) {
       <div className="container-page py-16">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Link href={`/${locale}`} className="inline-flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--color-surface-elevated)] ring-1 ring-[var(--color-border)]">
-                <Logo size={24} />
-              </span>
-              <div className="leading-tight">
-                <div className="text-base font-semibold">{dict.brand.name}</div>
-                <div className="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-subtle)]">
-                  {dict.brand.tagline}
-                </div>
-              </div>
+            <Link href={`/${locale}`} className="inline-flex items-center">
+              <Logo variant="full" size={42} locale={locale} />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-[var(--color-fg-muted)]">
               {f.tagline}

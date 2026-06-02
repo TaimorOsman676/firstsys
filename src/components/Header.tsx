@@ -60,18 +60,8 @@ export function Header({ locale, dict }: Props) {
       }`}
     >
       <div className="container-page flex h-16 items-center justify-between gap-6 md:h-20">
-        <Link href={`/${locale}`} className="flex items-center gap-3 group">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-surface-elevated)] ring-1 ring-[var(--color-border)] transition group-hover:ring-[var(--color-accent)]/40">
-            <Logo size={22} />
-          </span>
-          <div className="hidden sm:flex flex-col leading-tight">
-            <span className="text-[15px] font-semibold tracking-tight">
-              {dict.brand.name}
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--color-fg-subtle)]">
-              {locale === "en" ? "Decorative & Construction Chemicals" : "كيماويات البناء والديكور"}
-            </span>
-          </div>
+        <Link href={`/${locale}`} className="flex items-center group">
+          <Logo variant="full" size={38} locale={locale} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">

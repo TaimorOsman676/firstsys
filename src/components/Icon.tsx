@@ -37,7 +37,9 @@ type IconName =
   | "Truck"
   | "FileText"
   | "Download"
-  | "Search";
+  | "Search"
+  | "Upload"
+  | "Image";
 
 interface Props extends React.SVGAttributes<SVGSVGElement> {
   name: IconName;
@@ -335,6 +337,22 @@ export function Icon({ name, size = 24, className, ...rest }: Props) {
         <svg {...common}>
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
+        </svg>
+      );
+    case "Upload":
+      return (
+        <svg {...common}>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
+        </svg>
+      );
+    case "Image":
+      return (
+        <svg {...common}>
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21 15 16 10 5 21" />
         </svg>
       );
     default:

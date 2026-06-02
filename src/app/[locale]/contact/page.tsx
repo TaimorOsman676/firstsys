@@ -140,7 +140,7 @@ export default async function ContactPage(props: {
                         d="M120 80 L300 70 L340 100 L350 160 L320 220 L300 280 L260 320 L200 340 L150 320 L110 280 L80 220 L70 160 L90 110 Z"
                         stroke="var(--color-border-strong)"
                         strokeWidth="2.5"
-                        fill="rgba(214, 168, 107, 0.02)"
+                        fill="rgba(0, 189, 58, 0.02)"
                       />
                       {/* Riyadh dot */}
                       {office.city === "Riyadh" || office.city === "الرياض" ? (
@@ -278,7 +278,7 @@ export default async function ContactPage(props: {
                 d="M120 80 L300 70 L340 100 L350 160 L320 220 L300 280 L260 320 L200 340 L150 320 L110 280 L80 220 L70 160 L90 110 Z"
                 stroke="var(--color-border-strong)"
                 strokeWidth="1.5"
-                fill="rgba(214, 168, 107, 0.04)"
+                fill="rgba(0, 189, 58, 0.04)"
               />
               {/* Riyadh */}
               <g>

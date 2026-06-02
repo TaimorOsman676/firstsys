@@ -14,25 +14,25 @@ export function HeroVisual() {
       >
         <defs>
           <radialGradient id="hv-core" cx="38%" cy="32%">
-            <stop offset="0%" stopColor="#fff5e0" />
-            <stop offset="35%" stopColor="#f4cf93" />
-            <stop offset="70%" stopColor="#b57e31" />
-            <stop offset="100%" stopColor="#4a300a" />
+            <stop offset="0%" stopColor="#e8fded" />
+            <stop offset="35%" stopColor="#9bf2b1" />
+            <stop offset="70%" stopColor="#00bd3a" />
+            <stop offset="100%" stopColor="#043a13" />
           </radialGradient>
           <radialGradient id="hv-halo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#e5a93b" stopOpacity="0.32" />
-            <stop offset="45%" stopColor="#e5a93b" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="#e5a93b" stopOpacity="0" />
+            <stop offset="0%" stopColor="#00bd3a" stopOpacity="0.32" />
+            <stop offset="45%" stopColor="#00bd3a" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#00bd3a" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="hv-coreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#f3b755" stopOpacity="0.65" />
-            <stop offset="55%" stopColor="#f3b755" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#f3b755" stopOpacity="0" />
+            <stop offset="0%" stopColor="#00bd3a" stopOpacity="0.65" />
+            <stop offset="55%" stopColor="#00bd3a" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#00bd3a" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="hv-atom" cx="35%" cy="30%">
-            <stop offset="0%" stopColor="#fff5e0" />
-            <stop offset="55%" stopColor="#f3b755" />
-            <stop offset="100%" stopColor="#7a5214" />
+            <stop offset="0%" stopColor="#e8fded" />
+            <stop offset="55%" stopColor="#00bd3a" />
+            <stop offset="100%" stopColor="#004d16" />
           </radialGradient>
 
           <pattern
@@ -45,7 +45,7 @@ export function HeroVisual() {
           >
             <path
               d="M23 0 L46 13 L46 27 L23 40 L0 27 L0 13 Z"
-              stroke="rgba(229,169,59,0.16)"
+              stroke="rgba(0,189,58,0.16)"
               strokeWidth="0.6"
               fill="none"
             />
@@ -71,21 +71,21 @@ export function HeroVisual() {
           </filter>
 
           <linearGradient id="hv-orbit-1" x1="0" y1="0" x2="600" y2="0">
-            <stop offset="0%" stopColor="#e5a93b" stopOpacity="0" />
-            <stop offset="35%" stopColor="#e5a93b" stopOpacity="0.65" />
-            <stop offset="65%" stopColor="#e5a93b" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#e5a93b" stopOpacity="0" />
+            <stop offset="0%" stopColor="#00bd3a" stopOpacity="0" />
+            <stop offset="35%" stopColor="#00bd3a" stopOpacity="0.65" />
+            <stop offset="65%" stopColor="#00bd3a" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#00bd3a" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="hv-orbit-2" x1="0" y1="0" x2="600" y2="0">
-            <stop offset="0%" stopColor="#f3b755" stopOpacity="0" />
-            <stop offset="40%" stopColor="#f3b755" stopOpacity="0.7" />
-            <stop offset="60%" stopColor="#f3b755" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#f3b755" stopOpacity="0" />
+            <stop offset="0%" stopColor="#00bd3a" stopOpacity="0" />
+            <stop offset="40%" stopColor="#00bd3a" stopOpacity="0.7" />
+            <stop offset="60%" stopColor="#00bd3a" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#00bd3a" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="hv-orbit-3" x1="0" y1="0" x2="600" y2="0">
-            <stop offset="0%" stopColor="#f9dfb6" stopOpacity="0" />
-            <stop offset="50%" stopColor="#f9dfb6" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#f9dfb6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#8e9aa8" stopOpacity="0" />
+            <stop offset="50%" stopColor="#8e9aa8" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#8e9aa8" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -113,7 +113,7 @@ export function HeroVisual() {
             fill="none"
           />
           <g>
-            <circle cx="560" cy="300" r="24" fill="#e5a93b" opacity="0.14" />
+            <circle cx="560" cy="300" r="24" fill="#00bd3a" opacity="0.14" />
             <circle cx="560" cy="300" r="11" fill="url(#hv-atom)" />
             <circle
               cx="556.5"
@@ -146,7 +146,7 @@ export function HeroVisual() {
             fill="none"
           />
           <g>
-            <circle cx="540" cy="300" r="22" fill="#f3b755" opacity="0.16" />
+            <circle cx="540" cy="300" r="22" fill="#00bd3a" opacity="0.16" />
             <circle cx="540" cy="300" r="10" fill="url(#hv-atom)" />
             <circle
               cx="537"
@@ -179,7 +179,7 @@ export function HeroVisual() {
             fill="none"
           />
           <g>
-            <circle cx="518" cy="300" r="20" fill="#f9dfb6" opacity="0.16" />
+            <circle cx="518" cy="300" r="20" fill="#8e9aa8" opacity="0.16" />
             <circle cx="518" cy="300" r="8.5" fill="url(#hv-atom)" />
             <circle
               cx="515.5"
@@ -211,7 +211,7 @@ export function HeroVisual() {
             { cx: 250, delay: 7.1, dur: 11.5, r: 1.1 },
             { cx: 340, delay: 2.7, dur: 10.5, r: 1.4 },
           ].map((p, i) => (
-            <circle key={i} cx={p.cx} cy="540" r={p.r} fill="#f3b755">
+            <circle key={i} cx={p.cx} cy="540" r={p.r} fill="#00bd3a">
               <animate
                 attributeName="cy"
                 from="560"

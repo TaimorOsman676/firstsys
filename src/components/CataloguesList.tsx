@@ -305,7 +305,7 @@ export function CataloguesList({ locale, dict }: Props) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t.searchPlaceholder}
-            className="h-11 w-full rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] pe-4 ps-11 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-subtle)] focus:border-[var(--color-accent)]/50 focus:outline-none transition-colors duration-300"
+            className="h-11 w-full rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] pe-4 ps-11 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-muted)] focus:border-[var(--color-accent)]/50 focus:outline-none transition-colors duration-300"
           />
           {searchQuery && (
             <button
